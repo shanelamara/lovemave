@@ -1,0 +1,77 @@
+.story-spread {
+  position: relative;
+  perspective: 1250px;
+}
+
+.story-leaf {
+  --turn-angle: -180deg;
+  position: absolute;
+  inset: 0 0 0 50%;
+  z-index: 2;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  pointer-events: none;
+  animation: story-leaf-turn .95s cubic-bezier(.45, .08, .38, .98) both;
+}
+
+.story-leaf[data-direction="-1"] {
+  --turn-angle: 180deg;
+  inset: 0 50% 0 0;
+  transform-origin: right center;
+}
+
+.story-leaf-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  overflow: hidden;
+  border-radius: 0 28px 14px 0;
+  background: linear-gradient(90deg, #e6cdcc, #fffaf4 15%, #fffaf4 93%, #f3dfe0);
+  box-shadow: 3px 4px 8px #713c4f35;
+  backface-visibility: hidden;
+}
+
+.story-leaf-face::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #5c293655, transparent 68%);
+  content: "";
+  animation: story-leaf-shade .95s ease-in-out both;
+}
+
+.story-leaf-back { transform: rotateY(180deg); }
+.story-leaf[data-direction="1"] .story-leaf-back,
+.story-leaf[data-direction="-1"] .story-leaf-front { border-radius: 28px 0 0 14px; }
+
+@media (min-width: 821px) {
+  .story-leaf[data-direction="1"] .story-leaf-front .story-art,
+  .story-leaf[data-direction="1"] .story-leaf-back .story-note,
+  .story-leaf[data-direction="-1"] .story-leaf-front .story-note,
+  .story-leaf[data-direction="-1"] .story-leaf-back .story-art { display: none; }
+}
+
+@media (max-width: 820px) {
+  .story-leaf,
+  .story-leaf[data-direction="-1"] { inset: 0; }
+  .story-leaf { --turn-angle: -94deg; }
+  .story-leaf[data-direction="-1"] { --turn-angle: 94deg; }
+  .story-leaf-face { border-radius: 23px 23px 12px 12px; }
+  .story-leaf-back { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-leaf { animation-duration: .01s; }
+  .story-leaf-face::after { animation: none; }
+}
+
+@keyframes story-leaf-turn {
+  0% { transform: rotateY(0); }
+  48% { transform: rotateY(calc(var(--turn-angle) * .48)) translateZ(11px); }
+  100% { transform: rotateY(var(--turn-angle)); }
+}
+
+@keyframes story-leaf-shade {
+  0%, 100% { opacity: .06; }
+  50% { opacity: .78; }
+}
