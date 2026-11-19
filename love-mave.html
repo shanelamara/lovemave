@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>love, mave | The mug styling table</title>
-<meta name="description" content="Shop love, mave ceramic mugs on our pink styling table — move them around, pick your favorite, and make it yours.">
+<meta name="description" content="Explore love, mave ceramic mugs on our pink styling table — move them around, and pick one up for a closer look.">
 <meta name="theme-color" content="#fff8f3">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,7 +40,6 @@ body.locked{overflow:hidden}
 .mainnav{display:flex;align-items:center;gap:4px;margin-left:auto;font-size:14.5px;font-weight:600}
 .mainnav>a,.mainnav .menu-toggle{border:0;background:none;text-decoration:none;padding:10px 14px;border-radius:999px;transition:background .2s,color .2s;white-space:nowrap}
 .mainnav>a:hover,.mainnav .menu-toggle:hover,.mainnav .menu-toggle[aria-expanded=true]{background:#fbe3ea;color:var(--berry)}
-.mainnav>a[aria-current=true]{color:var(--berry);background:#fbe3ea}
 .has-menu{position:relative}
 .menu-toggle span{display:inline-block;transition:transform .2s;font-size:11px;margin-left:4px}
 .menu-toggle[aria-expanded=true] span{transform:rotate(180deg)}
@@ -51,12 +50,6 @@ body.locked{overflow:hidden}
 .col-menu button:hover{background:#fbe3ea}
 .col-menu .dot{width:28px;height:28px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:14px}
 .col-menu small{display:block;font-weight:500;color:var(--muted);font-size:12.5px}
-.cart-btn{display:flex;align-items:center;gap:8px;border:1px solid var(--berry);background:var(--berry);color:#fff;border-radius:999px;padding:9px 16px 9px 13px;font-weight:700;font-size:14px;position:relative;transition:background .2s,transform .2s}
-.cart-btn:hover{background:var(--berry-dark);transform:translateY(-1px)}
-.cart-btn svg{width:20px;height:20px}
-.cart-count{min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:#fff;color:var(--berry);font-size:12px;display:grid;place-items:center}
-.cart-btn.bump{animation:bump .5s var(--spring)}
-@keyframes bump{40%{transform:scale(1.14)}}
 .menu-btn{display:none;width:44px;height:44px;border:1px solid var(--line);background:var(--paper);border-radius:50%;place-items:center}
 .menu-btn span,.menu-btn span::before,.menu-btn span::after{display:block;width:18px;height:2px;background:var(--ink);border-radius:2px;position:relative;transition:transform .25s,background .2s}
 .menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0}
@@ -169,7 +162,7 @@ body.locked{overflow:hidden}
 .table-hint button{border:0;background:#fbe3ea;width:26px;height:26px;border-radius:50%;color:var(--berry);font-weight:700}
 .table-hint[hidden]{display:none}
 
-/* ---------- Sheets (product + cart) ---------- */
+/* ---------- Sheets (product) ---------- */
 .scrim{position:fixed;inset:0;z-index:60;background:#4f1f3340;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);opacity:0;transition:opacity .3s}
 .scrim.show{opacity:1}
 .scrim[hidden]{display:none}
@@ -197,13 +190,10 @@ body.locked{overflow:hidden}
 .p-giftnote{position:absolute;z-index:4;left:18px;top:18px;max-width:140px;padding:10px 12px;background:#fffdf6;rotate:-5deg;font:600 20px/1.05 var(--hand);color:#7b3352;box-shadow:0 8px 16px #7a2a4a26;word-break:break-word}
 .p-giftnote[hidden]{display:none}
 .p-stage .mini-beans{position:absolute;left:18px;bottom:16px;width:70px}
-.p-badge{position:absolute;right:16px;top:16px;z-index:4;background:#fff;color:var(--berry);border-radius:999px;padding:5px 11px;font-size:12px;font-weight:700;box-shadow:0 6px 12px #7a2a4a1f}
-.p-badge[hidden]{display:none}
 .sheet h2{margin:0;font:700 clamp(32px,4vw,42px)/1.02 var(--serif);letter-spacing:-.04em}
 .p-tagline{margin:6px 0 0;font:600 25px/1.1 var(--hand);color:var(--rose-deep)}
 .p-desc{margin:12px 0 0;color:#6b3a4e;font-size:15px}
 .p-price{margin:14px 0 4px;font:700 26px var(--serif);color:var(--berry)}
-.p-price small{font:500 13px var(--sans);color:var(--muted);margin-left:6px}
 .opt{border:0;margin:20px 0 0;padding:0}
 .opt legend{padding:0;margin-bottom:10px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;gap:8px;width:100%}
 .opt legend span{text-transform:none;letter-spacing:0;font:600 19px/1 var(--hand);color:var(--ink);margin-top:-4px}
@@ -230,40 +220,6 @@ body.locked{overflow:hidden}
 .note-field{display:grid;gap:6px;margin-top:14px;font-size:13px;font-weight:600;color:var(--muted)}
 .note-field[hidden]{display:none}
 .note-field input{border:1px dashed #e0a9bb;background:#fffaf6;border-radius:14px;padding:11px 14px;font:600 21px var(--hand);color:var(--ink)}
-.buy{position:sticky;bottom:0;display:flex;gap:12px;align-items:center;margin:26px calc(-1 * clamp(20px,4vw,34px)) -34px;padding:16px clamp(20px,4vw,34px) 22px;background:linear-gradient(#fffdf900,var(--paper) 22%)}
-.qty{display:flex;align-items:center;border:1px solid var(--line);border-radius:999px;background:#fff;flex:none}
-.qty button{width:40px;height:48px;border:0;background:none;font-size:20px;font-weight:700;color:var(--berry)}
-.qty output{min-width:22px;text-align:center;font-weight:700}
-.add{flex:1;display:flex;justify-content:center;align-items:center;gap:10px;min-height:52px;border:0;border-radius:999px;background:var(--berry);color:#fff;font-weight:700;font-size:15.5px;box-shadow:0 12px 24px #8a1f4a40;transition:background .2s,transform .2s}
-.add:hover{background:var(--berry-dark);transform:translateY(-2px)}
-.add.done{background:#c2507a}
-.add.done span{animation:pop .4s var(--spring)}
-
-/* Cart */
-.cart-list{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:14px}
-.cart-item{display:grid;grid-template-columns:78px 1fr auto;gap:14px;align-items:center;padding:12px;border-radius:20px;background:#fff;border:1px solid #f4dbe3}
-.ci-thumb{position:relative;width:78px;height:78px;border-radius:16px;background:linear-gradient(170deg,#fbe3ea,#f4c6d3);display:grid;place-items:end center;padding:10px 8px 8px}
-.ci-thumb .ci-mug{position:relative;height:100%}
-.ci-thumb img{height:100%;width:auto;filter:drop-shadow(0 3px 2px #7a2a4a33)}
-.cart-item h3{margin:0;font:700 17px/1.15 var(--serif);letter-spacing:-.02em}
-.cart-item p{margin:3px 0 0;font-size:12.5px;color:var(--muted)}
-.cart-item .ci-note{font:600 17px/1 var(--hand);color:var(--rose-deep)}
-.ci-side{display:grid;justify-items:end;gap:8px}
-.ci-side strong{font-size:14.5px}
-.ci-side .qty button{width:30px;height:32px;font-size:16px}
-.remove{border:0;background:none;font-size:12px;font-weight:700;color:var(--muted);text-decoration:underline;text-underline-offset:3px;padding:0}
-.cart-empty{text-align:center;padding:40px 10px;color:var(--muted)}
-.cart-empty .hand{display:block;font-size:30px;color:var(--rose-deep);margin-bottom:6px}
-.cart-foot{margin-top:22px;padding-top:18px;border-top:1px dashed #ebbccb}
-.row{display:flex;justify-content:space-between;font-size:15px;margin:4px 0}
-.row.total{font:700 22px var(--serif);color:var(--berry);margin-top:10px}
-.cart-foot .add{width:100%;margin-top:16px}
-.fine{font-size:12.5px;color:var(--muted);text-align:center;margin:10px 0 0}
-
-.toast{position:fixed;z-index:90;left:50%;bottom:24px;translate:-50% 0;background:var(--ink);color:#fff;border-radius:999px;padding:12px 20px;font-weight:600;font-size:14px;box-shadow:0 14px 30px #4f1f3340;transform:translateY(30px);opacity:0;transition:transform .4s var(--spring),opacity .3s;pointer-events:none}
-.toast.show{transform:none;opacity:1}
-.flyer{position:fixed;z-index:95;pointer-events:none;filter:drop-shadow(0 10px 8px #7a2a4a40)}
-
 /* ---------- About / care ---------- */
 .about{position:relative;padding:clamp(70px,9vw,130px) clamp(18px,4vw,48px);overflow:hidden;
   background:radial-gradient(circle at 92% 12%,#f8d3e0 0,#f8d3e000 30%),radial-gradient(circle at 6% 90%,#eadcf6 0,#eadcf600 32%),var(--cream)}
@@ -295,8 +251,8 @@ footer::before{content:"";position:absolute;inset:-17px 0 auto;height:18px;backg
 .foot-brand{font:700 34px/1 var(--serif);letter-spacing:-.04em}
 .foot-brand i{color:#f6b9cb}
 .foot-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px;margin:18px 0 26px;font-size:14px;font-weight:600}
-.foot-nav a,.foot-nav button{color:#f6cad9;text-decoration:none;border:0;background:none;padding:4px}
-.foot-nav a:hover,.foot-nav button:hover{color:#fff}
+.foot-nav a{color:#f6cad9;text-decoration:none;border:0;background:none;padding:4px}
+.foot-nav a:hover{color:#fff}
 .credit-pill{display:inline-flex;align-items:center;gap:10px;border:1px solid #f6cad980;border-radius:999px;padding:11px 22px;text-decoration:none;color:#fbe6ed;transition:background .25s,color .25s}
 .credit-pill strong{font:700 italic 22px/1 var(--serif);color:#f6cad9}
 .credit-pill:hover{background:#fbe6ed;color:var(--ink)}
@@ -306,12 +262,10 @@ footer::before{content:"";position:absolute;inset:-17px 0 auto;height:18px;backg
 @media (max-width:1180px){
   .mainnav{font-size:14px}
   .mainnav>a,.mainnav .menu-toggle{padding:9px 10px}
-  .cart-btn .cart-label{display:none}
 }
 @media (max-width:980px){
   :root{--header:64px}
-  .menu-btn{display:grid}
-  .cart-btn{margin-left:auto}
+  .menu-btn{display:grid;margin-left:auto}
   .mainnav{position:fixed;top:var(--header);left:0;right:0;margin:0;flex-direction:column;align-items:stretch;gap:2px;padding:14px 16px 22px;background:var(--cream);border-bottom:1px solid var(--line);box-shadow:0 20px 30px #4f1f331f;
     transform:translateY(-8px);opacity:0;visibility:hidden;transition:transform .3s var(--ease),opacity .25s,visibility .3s;font-size:17px}
   .mainnav.open{transform:none;opacity:1;visibility:visible}
@@ -345,7 +299,6 @@ footer::before{content:"";position:absolute;inset:-17px 0 auto;height:18px;backg
 @media (max-width:420px){
   .brand{font-size:24px}
   .brand small{display:none}
-  .cart-btn{padding:8px 12px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:1ms!important;animation-iteration-count:1!important;transition-duration:1ms!important;scroll-behavior:auto!important}
@@ -360,18 +313,12 @@ footer::before{content:"";position:absolute;inset:-17px 0 auto;height:18px;backg
   <a class="brand" href="#home" data-go="home">love, <i>mave</i><small>♡</small></a>
   <nav class="mainnav" id="mainnav" aria-label="Main">
     <a href="#home" data-go="home">Home</a>
-    <a href="#shop" data-go="all">Shop All</a>
     <div class="has-menu">
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="col-menu">Collections <span aria-hidden="true">▾</span></button>
       <div class="col-menu" id="col-menu" hidden></div>
     </div>
-    <a href="#shop" data-go="best">Best Sellers</a>
     <a href="#about" data-go="about">About Love, Mave</a>
   </nav>
-  <button class="cart-btn" type="button" data-open-cart aria-label="Open cart, 0 items">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/><path d="M12 15.6s-2.6-1.5-2.6-3.1a1.4 1.4 0 0 1 2.6-.7 1.4 1.4 0 0 1 2.6.7c0 1.6-2.6 3.1-2.6 3.1z" fill="currentColor" stroke="none"/></svg>
-    <span class="cart-label">Cart</span><span class="cart-count" id="cart-count">0</span>
-  </button>
   <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mainnav"><span></span></button>
 </header>
 
@@ -381,7 +328,7 @@ footer::before{content:"";position:absolute;inset:-17px 0 auto;height:18px;backg
       <div class="menu-card" id="menu-card">
         <p class="eyebrow">The love, mave styling table</p>
         <h1 id="studio-title">Style your <em>sweet</em> morning.</h1>
-        <p class="lede">Every mug is sitting right here on the table. Move them around, pick one up for a closer look, and set your favorites aside.</p>
+        <p class="lede">Every mug is sitting right here on the table. Move them around and pick one up for a closer look.</p>
         <p class="hint" aria-hidden="true">
           <span class="mouse">drag them around</span><span class="touch">press &amp; hold to move</span>
           <svg viewBox="0 0 52 30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 8c12 16 30 18 44 8"/><path d="M38 12l9 4-4 9"/></svg>
@@ -473,7 +420,7 @@ footer::before{content:"";position:absolute;inset:-17px 0 auto;height:18px;backg
 <footer>
   <div class="foot-brand">love, <i>mave</i> ♡</div>
   <nav class="foot-nav" aria-label="Footer">
-    <a href="#shop" data-go="all">Shop All</a><a href="#shop" data-go="best">Best Sellers</a><a href="#about">About</a><a href="#care">Mug care</a><button type="button" data-open-cart>Cart</button><a href="#home" data-go="home">Back to top ↑</a>
+    <a href="#about">About</a><a href="#care">Mug care</a><a href="#home" data-go="home">Back to top ↑</a>
   </nav>
   <a class="credit-pill" href="https://ds-labs-tech.vercel.app/work"><span>Created with ♡ by</span> <strong>d&amp;slabs</strong> <b aria-hidden="true">↗</b></a>
 </footer>
@@ -485,7 +432,6 @@ footer::before{content:"";position:absolute;inset:-17px 0 auto;height:18px;backg
     <div class="sheet-head"><p class="eyebrow" id="p-col" style="margin:0"></p><button class="x" type="button" data-close aria-label="Close product details">×</button></div>
     <div class="p-stage">
       <div class="light" aria-hidden="true"></div>
-      <span class="p-badge" id="p-badge" hidden>★ Best seller</span>
       <div class="p-saucer" aria-hidden="true"></div>
       <div class="p-mug" id="p-mug"><img id="p-img" alt=""><span class="tint" id="p-tint"></span>
         <svg class="p-bow" id="p-bow" hidden viewBox="0 0 120 96" aria-hidden="true"><g fill="#f5a9c0" stroke="#d57895" stroke-width="2" stroke-linejoin="round"><path d="M56 46 38 92l10-6 7 8 7-46z"/><path d="M64 46l18 44-10-5-5 8-8-45z"/><path d="M60 40C40 8 6 12 9 35c2 21 32 18 51 9z"/><path d="M60 40C80 8 114 12 111 35c-2 21-32 18-51 9z"/><rect x="50" y="33" width="20" height="17" rx="7" fill="#ef93b0"/></g></svg>
@@ -505,33 +451,15 @@ footer::before{content:"";position:absolute;inset:-17px 0 auto;height:18px;backg
         <label class="switch"><input type="checkbox" id="p-wrap"> Gift wrap with a pink ribbon <small id="wrap-price"></small></label>
         <label class="note-field" id="note-field" hidden>Add a handwritten note<input id="p-note" maxlength="60" placeholder="happy birthday, bestie ♡" autocomplete="off"></label>
       </fieldset>
-      <div class="buy">
-        <div class="qty" role="group" aria-label="Quantity"><button type="button" id="q-minus" aria-label="Decrease quantity">−</button><output id="q-val" aria-live="polite">1</output><button type="button" id="q-plus" aria-label="Increase quantity">+</button></div>
-        <button class="add" type="submit" id="add-btn"><span id="add-label">Add to cart</span></button>
-      </div>
     </form>
   </div>
 </aside>
-
-<aside class="sheet" id="cart" role="dialog" aria-modal="true" aria-labelledby="cart-title" tabindex="-1">
-  <div class="sheet-inner">
-    <div class="sheet-head"><h2 id="cart-title" style="font-size:34px">Your <em>tray</em></h2><button class="x" type="button" data-close aria-label="Close cart">×</button></div>
-    <ul class="cart-list" id="cart-list"></ul>
-    <div class="cart-empty" id="cart-empty"><span class="hand">your tray is empty ♡</span>Pick a mug from the table and it’ll wait for you here.</div>
-    <div class="cart-foot" id="cart-foot">
-      <div class="row"><span>Subtotal</span><span id="cart-sub"></span></div>
-      <div class="row total"><span>Total</span><span id="cart-total"></span></div>
-      <button class="add" type="button" id="checkout">Checkout</button>
-    </div>
-  </div>
-</aside>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 (() => {
 'use strict';
 /* =========================================================
-   Store data — replace prices, best sellers and options with
+   Store data — replace prices and options with
    the client's real catalogue before launch.
    ========================================================= */
 const CURRENCY = '₱';
@@ -540,19 +468,18 @@ const COLLECTIONS = [
   { id: 'little-friends', name: 'Little Friends', blurb: 'Characters with rosy cheeks', dot: '#fbd3df', icon: '✿' },
   { id: 'hugot', name: 'Hugot Hours', blurb: 'For your big-feelings mornings', dot: '#e3d3f4', icon: '☁' },
   { id: 'sassy', name: 'Sassy Sips', blurb: 'Bold lettering, cheeky sips', dot: '#f8e4a8', icon: '✦' },
-  { id: 'best', name: 'Best Sellers', blurb: 'The ones everyone picks first', dot: '#f6b9cb', icon: '★' }
 ];
 const MUGS = [
-  { id: 'pink-bunny', name: 'Pink Bunny', img: 0, col: 'little-friends', price: 450, h: .84, best: true, tagline: 'shy, sweet & a little extra', desc: 'A white ceramic mug with a pink bunny-eared character and a peach wavy handle.' },
+  { id: 'pink-bunny', name: 'Pink Bunny', img: 0, col: 'little-friends', price: 450, h: .84, tagline: 'shy, sweet & a little extra', desc: 'A white ceramic mug with a pink bunny-eared character and a peach wavy handle.' },
   { id: 'green-character', name: 'Green Character', img: 1, col: 'little-friends', price: 450, h: .84, tagline: 'grumpy until the first sip', desc: 'A white ceramic mug with a green-hooded character and a peach wavy handle.' },
   { id: 'blue-character', name: 'Blue Character', img: 2, col: 'little-friends', price: 450, h: .84, tagline: 'pigtails & big daydreams', desc: 'A white ceramic mug with a character in a blue hood with yellow pigtails and a peach wavy handle.' },
   { id: 'le-is-che', name: 'Le is che', img: 3, col: 'sassy', price: 420, h: .86, tagline: 'for the main character', desc: 'A white ceramic mug with black “Le is che” lettering and a rounded handle.' },
   { id: 'what-da-hell', name: 'What Da Hell', img: 4, col: 'hugot', price: 480, h: 1.2, tagline: 'when life gives you lemons…', desc: 'A tall white ceramic cup with black handwritten “When life give you What da hell.” lettering.' },
-  { id: 'what-the-shibal', name: 'What the Shibal', img: 5, col: 'sassy', price: 460, h: 1.02, best: true, tagline: 'made for monday mornings', desc: 'A white ceramic mug with yellow “What the Shibal” lettering and a mint wavy handle.' },
-  { id: 'mag-cry-aq', name: 'What If Mag Cry AQ?', img: 6, col: 'hugot', price: 460, h: 1.05, best: true, tagline: 'a cup for big feelings', desc: 'A white ceramic mug with pink “What if MAG CRY AQ?” lettering and a pink handle.' },
+  { id: 'what-the-shibal', name: 'What the Shibal', img: 5, col: 'sassy', price: 460, h: 1.02, tagline: 'made for monday mornings', desc: 'A white ceramic mug with yellow “What the Shibal” lettering and a mint wavy handle.' },
+  { id: 'mag-cry-aq', name: 'What If Mag Cry AQ?', img: 6, col: 'hugot', price: 460, h: 1.05, tagline: 'a cup for big feelings', desc: 'A white ceramic mug with pink “What if MAG CRY AQ?” lettering and a pink handle.' },
   { id: 'tanginas', name: 'Tanginas', img: 7, col: 'hugot', price: 480, h: 1.2, tagline: 'tall cup, strong opinions', desc: 'A tall white ceramic mug with black “When life give you Tanginas” lettering and a white handle.' },
   { id: 'esmiringhoy', name: 'Esmiringhoy', img: 8, col: 'sassy', price: 460, h: .95, tagline: 'say it with a smile', desc: 'A white ceramic mug with dark green “Esmiringhoy” lettering and a mint wavy handle.' },
-  { id: 'depota', name: 'Depota', img: 9, col: 'sassy', price: 420, h: .8, best: true, tagline: 'small cup, big energy', desc: 'A white ceramic mug with yellow “Depota.” lettering and a white handle.' }
+  { id: 'depota', name: 'Depota', img: 9, col: 'sassy', price: 420, h: .8, tagline: 'small cup, big energy', desc: 'A white ceramic mug with yellow “Depota.” lettering and a white handle.' }
 ];
 const GLAZES = [
   { id: 'cloud', name: 'Cloud white', color: '#fffdf9', tint: 'transparent' },
@@ -588,7 +515,6 @@ const table = $('#table');
 const mugLayer = $('#mugs');
 const card = $('#menu-card');
 const tagsEl = $('#tags');
-const toastEl = $('#toast');
 const hint = $('#table-hint');
 
 /* ---------- build mugs ---------- */
@@ -613,18 +539,15 @@ MUGS.forEach(m => {
 let current = 'all';
 let seed = 7;
 let mode = 'scatter';
-const members = id => id === 'all' ? MUGS : id === 'best' ? MUGS.filter(m => m.best) : MUGS.filter(m => m.col === id);
-tagsEl.innerHTML = COLLECTIONS.map(c => `<li><button class="tag" type="button" data-col="${c.id}" aria-pressed="${c.id === current}">${c.icon === '★' ? '★ ' : ''}${c.name} <small>${members(c.id).length}</small></button></li>`).join('');
-$('#col-menu').innerHTML = COLLECTIONS.filter(c => c.id !== 'all' && c.id !== 'best').map(c => `<button type="button" data-col="${c.id}"><span class="dot" style="background:${c.dot}">${c.icon}</span><span>${c.name}<small>${c.blurb}</small></span></button>`).join('');
+const members = id => id === 'all' ? MUGS : MUGS.filter(m => m.col === id);
+tagsEl.innerHTML = COLLECTIONS.map(c => `<li><button class="tag" type="button" data-col="${c.id}" aria-pressed="${c.id === current}">${c.name} <small>${members(c.id).length}</small></button></li>`).join('');
+$('#col-menu').innerHTML = COLLECTIONS.filter(c => c.id !== 'all').map(c => `<button type="button" data-col="${c.id}"><span class="dot" style="background:${c.dot}">${c.icon}</span><span>${c.name}<small>${c.blurb}</small></span></button>`).join('');
 
 function setCollection(id, { scroll = false } = {}) {
   if (!colOf(id)) id = 'all';
   const changed = id !== current;
   current = id;
   $$('.tag').forEach(t => t.setAttribute('aria-pressed', String(t.dataset.col === id)));
-  $$('.mainnav [data-go]').forEach(a => a.removeAttribute('aria-current'));
-  const navKey = id === 'best' ? 'best' : id === 'all' ? 'all' : null;
-  if (navKey) $(`.mainnav [data-go="${navKey}"]`)?.setAttribute('aria-current', 'true');
   if (changed) { mode = 'scatter'; seed = Math.floor(Math.random() * 1e6); arrange(true); }
   if (scroll) table.scrollIntoView({ behavior: reduced.matches ? 'auto' : 'smooth', block: narrowMQ.matches ? 'start' : 'center' });
 }
@@ -881,12 +804,11 @@ document.addEventListener('click', e => {
   const go = a.dataset.go;
   closeMenus();
   if (go === 'home') { setCollection('all'); }
-  else if (go === 'all' || go === 'best') { e.preventDefault(); setCollection(go, { scroll: true }); }
 });
 
 /* ---------- product sheet ---------- */
-const sheet = $('#product'), cartSheet = $('#cart'), scrim = $('#scrim');
-const P = { id: null, glaze: 'cloud', size: '11oz', wrap: false, note: '', qty: 1 };
+const sheet = $('#product'), scrim = $('#scrim');
+const P = { id: null, glaze: 'cloud', size: '11oz', wrap: false, note: '' };
 let returnFocus = null, openSheet = null;
 function showSheet(s, from) {
   if (openSheet && openSheet !== s) hideSheet(false);
@@ -930,7 +852,6 @@ function renderProduct(swap) {
   $('#p-name').textContent = m.name;
   $('#p-tagline').textContent = m.tagline;
   $('#p-desc').textContent = m.desc;
-  $('#p-badge').hidden = !m.best;
   const img = $('#p-img');
   img.src = IMAGES[m.img];
   $('#p-mug').style.setProperty('--mask', `url(${IMAGES[m.img]})`);
@@ -939,9 +860,7 @@ function renderProduct(swap) {
   $('#p-bow').toggleAttribute('hidden', !P.wrap);
   const gn = $('#p-giftnote'); gn.hidden = !(P.wrap && P.note.trim()); gn.textContent = P.note;
   $('#note-field').hidden = !P.wrap;
-  $('#q-val').textContent = P.qty;
-  $('#p-price').innerHTML = `${money(unitPrice())}<small>${P.qty > 1 ? 'each' : ''}</small>`;
-  if (!$('#add-btn').classList.contains('done')) $('#add-label').textContent = `Add to cart · ${money(unitPrice() * P.qty)}`;
+  $('#p-price').textContent = money(unitPrice());
   const sib = MUGS.filter(x => x.col === m.col);
   $('#design-name').textContent = m.name;
   $('#designs').innerHTML = sib.map(x => `<label class="choice" title="${x.name}"><input type="radio" name="design" value="${x.id}" ${x.id === m.id ? 'checked' : ''} aria-label="${x.name}"><span class="thumb"><img src="${IMAGES[x.img]}" alt=""></span></label>`).join('');
@@ -949,13 +868,14 @@ function renderProduct(swap) {
   if (openSheet === sheet || swap) { $$('.mug.selected').forEach(x => x.classList.remove('selected')); mugEls[m.id].classList.add('selected'); }
 }
 function openProduct(id, from) {
-  Object.assign(P, { id, glaze: 'cloud', size: '11oz', wrap: false, note: '', qty: 1 });
+  Object.assign(P, { id, glaze: 'cloud', size: '11oz', wrap: false, note: '' });
   $('#p-form').reset();
   $('#p-note').value = '';
   renderProduct(true);
   sheet.scrollTop = 0;
   showSheet(sheet, from);
 }
+$('#p-form').addEventListener('submit', e => e.preventDefault());
 $('#p-form').addEventListener('change', e => {
   const t = e.target;
   if (t.name === 'glaze') P.glaze = t.value;
@@ -966,70 +886,6 @@ $('#p-form').addEventListener('change', e => {
   renderProduct(false);
 });
 $('#p-note').addEventListener('input', e => { P.note = e.target.value; const gn = $('#p-giftnote'); gn.hidden = !P.note.trim(); gn.textContent = P.note; });
-$('#q-minus').addEventListener('click', () => { P.qty = Math.max(1, P.qty - 1); renderProduct(false); });
-$('#q-plus').addEventListener('click', () => { P.qty = Math.min(20, P.qty + 1); renderProduct(false); });
-
-/* ---------- cart ---------- */
-let cart = store.get('lovemave-cart', []).filter(i => byId(i.id));
-const keyOf = i => [i.id, i.glaze, i.size, i.wrap ? 1 : 0, i.note].join('|');
-function saveCart() { store.set('lovemave-cart', cart); renderCart(); }
-function itemPrice(i) { return byId(i.id).price + SIZES.find(s => s.id === i.size).add + (i.wrap ? WRAP_PRICE : 0); }
-function renderCart() {
-  const count = cart.reduce((a, i) => a + i.qty, 0);
-  $('#cart-count').textContent = count;
-  $$('[data-open-cart]').forEach(b => b.matches('.cart-btn') && b.setAttribute('aria-label', `Open cart, ${count} item${count === 1 ? '' : 's'}`));
-  const list = $('#cart-list');
-  $('#cart-empty').hidden = cart.length > 0;
-  $('#cart-foot').hidden = cart.length === 0;
-  list.innerHTML = cart.map((i, n) => {
-    const m = byId(i.id), g = GLAZES.find(x => x.id === i.glaze), s = SIZES.find(x => x.id === i.size);
-    return `<li class="cart-item"><div class="ci-thumb"><div class="ci-mug" style="--mask:url(${IMAGES[m.img]})"><img src="${IMAGES[m.img]}" alt=""><span class="tint" style="--glaze:${g.tint}"></span></div></div>
-      <div><h3>${m.name}</h3><p>${g.name} · ${s.name} (${s.note})${i.wrap ? ' · Gift wrapped' : ''}</p>${i.note ? `<p class="ci-note">“${escapeHtml(i.note)}”</p>` : ''}</div>
-      <div class="ci-side"><strong>${money(itemPrice(i) * i.qty)}</strong><div class="qty" role="group" aria-label="Quantity for ${m.name}"><button type="button" data-q="-1" data-n="${n}" aria-label="Decrease">−</button><output>${i.qty}</output><button type="button" data-q="1" data-n="${n}" aria-label="Increase">+</button></div><button class="remove" type="button" data-rm="${n}">Remove</button></div></li>`;
-  }).join('');
-  const sub = cart.reduce((a, i) => a + itemPrice(i) * i.qty, 0);
-  $('#cart-sub').textContent = money(sub);
-  $('#cart-total').textContent = money(sub);
-}
-function escapeHtml(s) { return s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
-$('#cart-list').addEventListener('click', e => {
-  const q = e.target.closest('[data-q]'), rm = e.target.closest('[data-rm]');
-  if (q) { const i = cart[+q.dataset.n]; i.qty = Math.max(1, Math.min(20, i.qty + +q.dataset.q)); saveCart(); }
-  if (rm) { cart.splice(+rm.dataset.rm, 1); saveCart(); $('#cart [data-close]').focus(); }
-});
-$$('[data-open-cart]').forEach(b => b.addEventListener('click', () => { closeMenus(); showSheet(cartSheet, b); }));
-$('#checkout').addEventListener('click', () => toast('Checkout is opening soon ♡'));
-
-$('#p-form').addEventListener('submit', e => {
-  e.preventDefault();
-  const item = { id: P.id, glaze: P.glaze, size: P.size, wrap: P.wrap, note: P.wrap ? P.note.trim() : '', qty: P.qty };
-  const existing = cart.find(i => keyOf(i) === keyOf(item));
-  existing ? existing.qty = Math.min(20, existing.qty + item.qty) : cart.push(item);
-  saveCart();
-  flyToCart();
-  const btn = $('#add-btn');
-  btn.classList.add('done'); $('#add-label').textContent = 'Added to your tray ♡';
-  setTimeout(() => { btn.classList.remove('done'); $('#add-label').textContent = `Add to cart · ${money(unitPrice() * P.qty)}`; }, 1500);
-  toast(`${byId(P.id).name} is in your cart ♡`);
-});
-function flyToCart() {
-  const btn = $('.cart-btn');
-  const bump = () => { btn.classList.remove('bump'); void btn.offsetWidth; btn.classList.add('bump'); };
-  if (reduced.matches) return bump();
-  const src = $('#p-img').getBoundingClientRect(), dst = btn.getBoundingClientRect();
-  const f = document.createElement('img');
-  f.src = $('#p-img').src; f.className = 'flyer'; f.alt = '';
-  Object.assign(f.style, { left: src.left + 'px', top: src.top + 'px', width: src.width + 'px', height: src.height + 'px' });
-  document.body.append(f);
-  const dx = dst.left + dst.width / 2 - (src.left + src.width / 2), dy = dst.top + dst.height / 2 - (src.top + src.height / 2);
-  f.animate([
-    { transform: 'translate(0,0) scale(1) rotate(0)', opacity: 1 },
-    { transform: `translate(${dx * .45}px, ${dy * .45 - 120}px) scale(.6) rotate(-14deg)`, opacity: 1, offset: .5 },
-    { transform: `translate(${dx}px, ${dy}px) scale(.12) rotate(10deg)`, opacity: .4 }
-  ], { duration: 850, easing: 'cubic-bezier(.45,0,.3,1)' }).onfinish = () => { f.remove(); bump(); };
-}
-let toastTimer;
-function toast(msg) { toastEl.textContent = msg; toastEl.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2600); }
 
 /* ---------- hint ---------- */
 if (store.get('lovemave-hint-off', false)) hint.hidden = true;
@@ -1039,7 +895,6 @@ setHintText();
 narrowMQ.addEventListener('change', () => { setHintText(); scheduleLayout(); });
 
 /* ---------- init ---------- */
-renderCart();
 const start = () => {
   const go = new URLSearchParams(location.search).get('collection');
   if (go && colOf(go)) { current = go; $$('.tag').forEach(t => t.setAttribute('aria-pressed', String(t.dataset.col === go))); }
