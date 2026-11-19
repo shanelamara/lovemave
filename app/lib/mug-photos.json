@@ -1,0 +1,92 @@
+[
+  {
+    "id": "pink-bunny",
+    "name": "Pink Bunny",
+    "img": 0,
+    "col": "little-friends",
+    "h": 0.84,
+    "tagline": "shy, sweet & a little extra",
+    "desc": "A white ceramic mug with a pink bunny-eared character and a peach wavy handle."
+  },
+  {
+    "id": "green-character",
+    "name": "Green Character",
+    "img": 1,
+    "col": "little-friends",
+    "h": 0.84,
+    "tagline": "grumpy until the first sip",
+    "desc": "A white ceramic mug with a green-hooded character and a peach wavy handle."
+  },
+  {
+    "id": "blue-character",
+    "name": "Blue Character",
+    "img": 2,
+    "col": "little-friends",
+    "h": 0.84,
+    "tagline": "pigtails & big daydreams",
+    "desc": "A white ceramic mug with a character in a blue hood with yellow pigtails and a peach wavy handle."
+  },
+  {
+    "id": "le-is-che",
+    "name": "Le is che",
+    "img": 3,
+    "col": "sassy",
+    "h": 0.86,
+    "tagline": "for the main character",
+    "desc": "A white ceramic mug with black “Le is che” lettering and a rounded handle."
+  },
+  {
+    "id": "what-da-hell",
+    "name": "What Da Hell",
+    "img": 4,
+    "col": "hugot",
+    "h": 1.2,
+    "tagline": "when life gives you lemons…",
+    "desc": "A tall white ceramic cup with black handwritten “When life give you What da hell.” lettering."
+  },
+  {
+    "id": "what-the-shibal",
+    "name": "What the Shibal",
+    "img": 5,
+    "col": "sassy",
+    "h": 1.02,
+    "tagline": "made for monday mornings",
+    "desc": "A white ceramic mug with yellow “What the Shibal” lettering and a mint wavy handle."
+  },
+  {
+    "id": "mag-cry-aq",
+    "name": "What If Mag Cry AQ?",
+    "img": 6,
+    "col": "hugot",
+    "h": 1.05,
+    "tagline": "a cup for big feelings",
+    "desc": "A white ceramic mug with pink “What if MAG CRY AQ?” lettering and a pink handle."
+  },
+  {
+    "id": "tanginas",
+    "name": "Tanginas",
+    "img": 7,
+    "col": "hugot",
+    "h": 1.2,
+    "tagline": "tall cup, strong opinions",
+    "desc": "A tall white ceramic mug with black “When life give you Tanginas” lettering and a white handle."
+  },
+  {
+    "id": "esmiringhoy",
+    "name": "Esmiringhoy",
+    "img": 8,
+    "col": "sassy",
+    "h": 0.95,
+    "tagline": "say it with a smile",
+    "desc": "A white ceramic mug with dark green “Esmiringhoy” lettering and a mint wavy handle."
+  },
+  {
+    "id": "depota",
+    "name": "Depota",
+    "img": 9,
+    "col": "sassy",
+    "h": 0.8,
+    "tagline": "small cup, big energy",
+    "desc": "A white ceramic mug with yellow “Depota.” lettering and a white handle."
+  }
+]

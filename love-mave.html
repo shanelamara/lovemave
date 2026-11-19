@@ -514,18 +514,7 @@ const COLLECTIONS = [
   { id: 'hugot', name: 'Hugot Hours', blurb: 'For your big-feelings mornings', dot: '#e3d3f4', icon: '☁' },
   { id: 'sassy', name: 'Sassy Sips', blurb: 'Bold lettering, cheeky sips', dot: '#f8e4a8', icon: '✦' },
 ];
-const MUGS = [
-  { id: 'pink-bunny', name: 'Pink Bunny', img: 0, col: 'little-friends', h: .84, tagline: 'shy, sweet & a little extra', desc: 'A white ceramic mug with a pink bunny-eared character and a peach wavy handle.' },
-  { id: 'green-character', name: 'Green Character', img: 1, col: 'little-friends', h: .84, tagline: 'grumpy until the first sip', desc: 'A white ceramic mug with a green-hooded character and a peach wavy handle.' },
-  { id: 'blue-character', name: 'Blue Character', img: 2, col: 'little-friends', h: .84, tagline: 'pigtails & big daydreams', desc: 'A white ceramic mug with a character in a blue hood with yellow pigtails and a peach wavy handle.' },
-  { id: 'le-is-che', name: 'Le is che', img: 3, col: 'sassy', h: .86, tagline: 'for the main character', desc: 'A white ceramic mug with black “Le is che” lettering and a rounded handle.' },
-  { id: 'what-da-hell', name: 'What Da Hell', img: 4, col: 'hugot', h: 1.2, tagline: 'when life gives you lemons…', desc: 'A tall white ceramic cup with black handwritten “When life give you What da hell.” lettering.' },
-  { id: 'what-the-shibal', name: 'What the Shibal', img: 5, col: 'sassy', h: 1.02, tagline: 'made for monday mornings', desc: 'A white ceramic mug with yellow “What the Shibal” lettering and a mint wavy handle.' },
-  { id: 'mag-cry-aq', name: 'What If Mag Cry AQ?', img: 6, col: 'hugot', h: 1.05, tagline: 'a cup for big feelings', desc: 'A white ceramic mug with pink “What if MAG CRY AQ?” lettering and a pink handle.' },
-  { id: 'tanginas', name: 'Tanginas', img: 7, col: 'hugot', h: 1.2, tagline: 'tall cup, strong opinions', desc: 'A tall white ceramic mug with black “When life give you Tanginas” lettering and a white handle.' },
-  { id: 'esmiringhoy', name: 'Esmiringhoy', img: 8, col: 'sassy', h: .95, tagline: 'say it with a smile', desc: 'A white ceramic mug with dark green “Esmiringhoy” lettering and a mint wavy handle.' },
-  { id: 'depota', name: 'Depota', img: 9, col: 'sassy', h: .8, tagline: 'small cup, big energy', desc: 'A white ceramic mug with yellow “Depota.” lettering and a white handle.' }
-];
+const MUGS = /* mug-photo-data */ [];
 const GLAZES = [
   { id: 'cloud', name: 'Cloud white', color: '#fffdf9', tint: 'transparent' },
   { id: 'blush', name: 'Blush pink', color: '#f6b9cb', tint: '#f7a8c0' },
@@ -542,6 +531,10 @@ const IMAGES = ["data:image/webp;base64,UklGRop4AABXRUJQVlA4WAoAAAAQAAAAawIAqAEA
 /* ---------- helpers ---------- */
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const photoSrc = mug => mug.src ?? IMAGES[mug.img];
+const escapeHtml = value => value.replace(/[&<>"']/g, char => ({
+  "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+})[char]);
 const byId = id => MUGS.find(m => m.id === id);
 const colOf = id => COLLECTIONS.find(c => c.id === id);
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
@@ -569,8 +562,8 @@ MUGS.forEach(m => {
   b.dataset.id = m.id;
   b.dataset.drag = '';
   b.setAttribute('aria-label', `${m.name}. Open details`);
-  b.innerHTML = `<span class="mug-inner"><span class="mug-shadow"></span><span class="mug-body"><img src="${IMAGES[m.img]}" alt="" draggable="false"><span class="tint"></span></span><span class="mug-tag">${m.name}${m.best ? '<span class="star">★</span>' : ''}</span></span>`;
-  b.style.setProperty('--mask', `url(${IMAGES[m.img]})`);
+  b.innerHTML = `<span class="mug-inner"><span class="mug-shadow"></span><span class="mug-body"><img src="${photoSrc(m)}" alt="" draggable="false"><span class="tint"></span></span><span class="mug-tag">${escapeHtml(m.name)}</span></span>`;
+  b.style.setProperty('--mask', `url(${photoSrc(m)})`);
   mugLayer.append(b);
   mugEls[m.id] = b;
   const img = b.querySelector('img');
@@ -894,8 +887,8 @@ function renderProduct(swap) {
   $('#p-tagline').textContent = m.tagline;
   $('#p-desc').textContent = m.desc;
   const img = $('#p-img');
-  img.src = IMAGES[m.img];
-  $('#p-mug').style.setProperty('--mask', `url(${IMAGES[m.img]})`);
+  img.src = photoSrc(m);
+  $('#p-mug').style.setProperty('--mask', `url(${photoSrc(m)})`);
   $('#p-tint').style.setProperty('--glaze', g.tint);
   $('#glaze-name').textContent = g.name;
   $('#p-bow').toggleAttribute('hidden', !P.wrap);
@@ -903,7 +896,7 @@ function renderProduct(swap) {
   $('#note-field').hidden = !P.wrap;
   const sib = MUGS.filter(x => x.col === m.col);
   $('#design-name').textContent = m.name;
-  $('#designs').innerHTML = sib.map(x => `<label class="choice" title="${x.name}"><input type="radio" name="design" value="${x.id}" ${x.id === m.id ? 'checked' : ''} aria-label="${x.name}"><span class="thumb"><img src="${IMAGES[x.img]}" alt=""></span></label>`).join('');
+  $('#designs').innerHTML = sib.map(x => `<label class="choice" title="${escapeHtml(x.name)}"><input type="radio" name="design" value="${x.id}" ${x.id === m.id ? 'checked' : ''} aria-label="${escapeHtml(x.name)}"><span class="thumb"><img src="${photoSrc(x)}" alt=""></span></label>`).join('');
   if (swap) { const pm = $('#p-mug'); pm.classList.remove('swap'); void pm.offsetWidth; pm.classList.add('swap'); }
   if (openSheet === sheet || swap) { $$('.mug.selected').forEach(x => x.classList.remove('selected')); mugEls[m.id].classList.add('selected'); }
 }
