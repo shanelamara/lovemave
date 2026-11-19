@@ -87,7 +87,23 @@ export default function Home() {
        </div>
       </section>
       </main>
-      <footer><div className="wrap"><a className="brand" href="#top">love, mave<span>♡</span></a><a href="#care">Mug care</a><a href="#top">Back to top ↑</a></div><p className="site-credit"><a className="credit-pill" href="https://ds-labs-tech.vercel.app/work"><span>Created with <i aria-hidden="true">♡</i> by</span> <strong>d&amp;slabs</strong> <b aria-hidden="true">↗</b></a></p></footer>
+      <footer>
+        <div className="wrap">
+          <a className="brand" href="#top">love, mave<span>♡</span></a>
+          <a href="#care">Mug care</a>
+          <a href="#top">Back to top ↑</a>
+        </div>
+      </footer>
+      <a
+        className="credit-pill"
+        href="https://ds-labs-tech.vercel.app/work"
+        aria-label="D&S Labs website design and development portfolio"
+      >
+        <span className="credit-kicker">Need a website?</span>
+        <strong>d&amp;s labs</strong>
+        <span className="credit-services">Design · Development</span>
+        <span className="credit-note">This site was made by us</span>
+      </a>
     </>
   );
 }

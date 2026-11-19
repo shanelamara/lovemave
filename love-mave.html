@@ -253,10 +253,55 @@ footer::before{content:"";position:absolute;inset:-17px 0 auto;height:18px;backg
 .foot-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px;margin:18px 0 26px;font-size:14px;font-weight:600}
 .foot-nav a{color:#f6cad9;text-decoration:none;border:0;background:none;padding:4px}
 .foot-nav a:hover{color:#fff}
-.credit-pill{display:inline-flex;align-items:center;gap:10px;border:1px solid #f6cad980;border-radius:999px;padding:11px 22px;text-decoration:none;color:#fbe6ed;transition:background .25s,color .25s}
-.credit-pill strong{font:700 italic 22px/1 var(--serif);color:#f6cad9}
-.credit-pill:hover{background:#fbe6ed;color:var(--ink)}
-.credit-pill:hover strong{color:var(--berry)}
+.credit-pill {
+  position: fixed;
+  right: max(12px, env(safe-area-inset-right));
+  bottom: max(12px, env(safe-area-inset-bottom));
+  z-index: 30;
+  display: grid;
+  gap: 6px;
+  width: min(260px, calc(100% - 24px));
+  padding: 15px 18px;
+  border: 1px solid #923c5d;
+  border-top: 4px solid #f3bd76;
+  border-radius: 15px;
+  background: #542034;
+  color: #fff9f5;
+  text-align: left;
+  text-decoration: none;
+  box-shadow: 0 8px 24px #54203444;
+  transition: background-color .2s, box-shadow .2s;
+}
+.credit-pill:hover, .credit-pill:focus-visible {
+  background: #6a2641;
+  box-shadow: 0 10px 28px #54203466;
+  text-decoration: none;
+}
+.credit-pill:focus-visible {
+  outline: 2px solid #f3bd76;
+  outline-offset: 3px;
+}
+.credit-pill strong { font: 700 1.75rem/1.1 var(--serif); }
+.credit-pill .credit-kicker,
+.credit-pill .credit-services {
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.credit-pill .credit-kicker { color: #ffd18d; }
+.credit-pill .credit-note {
+  margin-top: 3px;
+  padding-top: 7px;
+  border-top: 1px solid #fff9f54d;
+  font-size: .8125rem;
+  font-weight: 500;
+}
+@media (max-width: 600px), (max-height: 480px) {
+  .credit-pill { width: max-content; max-width: calc(100% - 24px); gap: 3px; padding: 7px 11px; }
+  .credit-pill strong { font-size: 1.125rem; }
+  .credit-pill .credit-services, .credit-pill .credit-note { display: none; }
+}
 
 /* ---------- Responsive ---------- */
 @media (max-width:1180px){
@@ -422,8 +467,13 @@ footer::before{content:"";position:absolute;inset:-17px 0 auto;height:18px;backg
   <nav class="foot-nav" aria-label="Footer">
     <a href="#about">About</a><a href="#care">Mug care</a><a href="#home" data-go="home">Back to top ↑</a>
   </nav>
-  <a class="credit-pill" href="https://ds-labs-tech.vercel.app/work"><span>Created with ♡ by</span> <strong>d&amp;slabs</strong> <b aria-hidden="true">↗</b></a>
 </footer>
+<a class="credit-pill" href="https://ds-labs-tech.vercel.app/work" aria-label="D&amp;S Labs website design and development portfolio">
+  <span class="credit-kicker">Need a website?</span>
+  <strong>d&amp;s labs</strong>
+  <span class="credit-services">Design · Development</span>
+  <span class="credit-note">This site was made by us</span>
+</a>
 
 <div class="scrim" id="scrim" hidden></div>
 
