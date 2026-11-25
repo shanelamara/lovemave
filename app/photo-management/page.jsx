@@ -10,6 +10,12 @@ const collections = {
   sassy: "Sassy Sips",
 };
 
+async function readResponse(response, fallback) {
+  const data = await response.json().catch(() => null);
+  if (!response.ok || !data) throw new Error(data?.error || fallback);
+  return data;
+}
+
 export default function PhotoManagement() {
   const [photos, setPhotos] = useState(null);
   const [active, setActive] = useState(null);
@@ -27,8 +33,7 @@ export default function PhotoManagement() {
       try {
         const response = await fetch(endpoint, { cache: "no-store" });
         if (response.status === 401) return;
-        if (!response.ok) throw new Error("Could not load photos.");
-        const data = await response.json();
+        const data = await readResponse(response, "Could not load photos.");
         if (!cancelled) setPhotos(data.photos);
       } catch (err) {
         if (!cancelled) setError(err.message);
@@ -76,16 +81,16 @@ export default function PhotoManagement() {
         headers: { "X-Photo-Manager": "1" },
         body: form,
       });
-      const data = await response.json();
       if (response.status === 401) {
         setPhotos(null);
         setActive(null);
       }
-      if (!response.ok) throw new Error(data.error ?? "Could not complete the request.");
+      const fallback = action === "save" ? "Could not save the photo." : "Could not complete the request.";
+      const data = await readResponse(response, fallback);
       if (action === "login") {
         const catalog = await fetch(endpoint, { cache: "no-store" });
-        if (!catalog.ok) throw new Error("Could not open the photo manager.");
-        setPhotos((await catalog.json()).photos);
+        const catalogData = await readResponse(catalog, "Could not open the photo manager.");
+        setPhotos(catalogData.photos);
       } else {
         setPhotos(data.photos ?? null);
       }

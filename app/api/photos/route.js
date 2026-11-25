@@ -1,13 +1,12 @@
-import { createHash, createHmac, randomBytes, randomUUID, timingSafeEqual } from "node:crypto";
+import { createHash, createHmac, randomUUID, timingSafeEqual } from "node:crypto";
 import { NextResponse } from "next/server";
-import { listManagerPhotos, listPhotos, readChanges, writeChanges } from "../../lib/photo-store";
+import { listManagerPhotos, listPhotos, PhotoStorageConflict, PhotoStorageUnavailable, readChanges, updateChanges } from "../../lib/photo-store";
 
 const COOKIE = "love_mave_photo_session";
 const SESSION_SECONDS = 60 * 60 * 4;
 const MAX_IMAGE = 2 * 1024 * 1024;
 const MAX_PHOTOS = 30;
 const COLLECTIONS = ["little-friends", "hugot", "sassy"];
-const signingKey = randomBytes(32);
 const failures = [];
 
 function json(data, status = 200) {
@@ -20,7 +19,8 @@ function sameSecret(first, second) {
 }
 
 function signature(value, code) {
-  return createHmac("sha256", signingKey).update(value + ":" + code).digest("hex");
+  const key = process.env.PHOTO_SESSION_SECRET || code;
+  return createHmac("sha256", key).update("photo-management:" + value + ":" + code).digest("hex");
 }
 
 function authorized(request) {
@@ -71,10 +71,10 @@ async function uploadedImage(file) {
   return { type, base64: bytes.toString("base64") };
 }
 
-export function GET(request) {
+export async function GET(request) {
   const imageId = request.nextUrl.searchParams.get("image");
   if (imageId !== null) {
-    const changes = readChanges();
+    const changes = await readChanges();
     const image = Object.hasOwn(changes, imageId) && changes[imageId]?.image;
     if (!image) return new Response(null, { status: 404 });
     return new Response(Buffer.from(image.base64, "base64"), {
@@ -82,7 +82,12 @@ export function GET(request) {
     });
   }
   if (!authorized(request)) return json({ error: "Enter your access code to continue." }, 401);
-  return json({ photos: listManagerPhotos(readChanges()) });
+  try {
+    return json({ photos: listManagerPhotos(await readChanges()) });
+  } catch (error) {
+    console.error("Could not read photo storage.", error);
+    return json({ error: "Could not load photos from storage." }, 503);
+  }
 }
 
 export async function POST(request) {
@@ -126,8 +131,21 @@ export async function POST(request) {
     return json({ error: error.message }, 400);
   }
 
-  // Keep the read, validation, and atomic write in one synchronous section.
-  const changes = readChanges();
+  try {
+    return await updateChanges(changes => changePhoto(changes, action, form, image));
+  } catch (error) {
+    if (error instanceof PhotoStorageUnavailable) {
+      return json({ error: "Connect a private Vercel Blob store to enable photo changes." }, 503);
+    }
+    if (error instanceof PhotoStorageConflict) {
+      return json({ error: "Another photo change was saved. Try again." }, 409);
+    }
+    console.error("Could not update photo storage.", error);
+    return json({ error: "Could not save the photo change to storage." }, 503);
+  }
+}
+
+function changePhoto(changes, action, form, image) {
   const photos = listPhotos(changes);
   const id = form.get("id");
   const current = photos.find(photo => photo.id === id);
@@ -151,6 +169,5 @@ export async function POST(request) {
     const { src, ...photo } = current ?? { id: photoId, h: 1, tagline: "" };
     changes[photoId] = { ...photo, name, desc, col, image: image ?? previous };
   }
-  writeChanges(changes);
   return json({ photos: listManagerPhotos(changes) });
 }
