@@ -138,7 +138,7 @@ export async function POST(request) {
       return json({ error: "Connect a private Vercel Blob store to enable photo changes." }, 503);
     }
     if (error instanceof PhotoStorageConflict) {
-      return json({ error: "Another photo change was saved. Try again." }, 409);
+      return json({ error: "Could not confirm the latest photo catalog version. Refresh the photo manager and try again." }, 409);
     }
     console.error("Could not update photo storage.", error);
     return json({ error: "Could not save the photo change to storage." }, 503);

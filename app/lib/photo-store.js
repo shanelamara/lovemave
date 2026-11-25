@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { BlobPreconditionFailedError, get, put } from "@vercel/blob";
+import { BlobNotFoundError, BlobPreconditionFailedError, get, head, put } from "@vercel/blob";
 import defaults from "./mug-photos.json";
 
 const blobPath = "photo-management/photos.json";
@@ -17,11 +17,16 @@ function usesBlob() {
 
 async function readBlob() {
   const result = await get(blobPath, { ...blobOptions, useCache: false });
-  if (!result) return { changes: {} };
-  return {
-    changes: await new Response(result.stream).json(),
-    etag: result.blob.etag,
-  };
+  return result ? new Response(result.stream).json() : null;
+}
+
+async function blobMetadata() {
+  try {
+    return await head(blobPath);
+  } catch (error) {
+    if (error instanceof BlobNotFoundError) return null;
+    throw error;
+  }
 }
 
 function directory() {
@@ -50,7 +55,7 @@ function writeLocalChanges(changes) {
 }
 
 export async function readChanges() {
-  if (usesBlob()) return (await readBlob()).changes;
+  if (usesBlob()) return (await readBlob()) ?? {};
   return process.env.VERCEL ? {} : readLocalChanges();
 }
 
@@ -63,25 +68,30 @@ export async function updateChanges(update) {
     return result;
   }
 
-  const { changes, etag } = await readBlob();
-  const result = update(changes);
-  if (!result.ok) return result;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    // Read metadata first so a write racing the download fails the condition.
+    const metadata = await blobMetadata();
+    const changes = metadata ? await readBlob() : {};
+    if (!changes) continue;
+    if (metadata && !metadata.etag) throw new Error("Photo catalog metadata is missing its ETag.");
+    const result = update(changes);
+    if (!result.ok) return result;
 
-  const body = JSON.stringify(changes);
-  try {
-    await put(blobPath, body, {
-      ...blobOptions,
-      contentType: "application/json",
-      multipart: Buffer.byteLength(body) > 5 * 1024 * 1024,
-      ...(etag ? { allowOverwrite: true, ifMatch: etag } : { allowOverwrite: false }),
-    });
-  } catch (error) {
-    if (error instanceof BlobPreconditionFailedError || (!etag && (await readBlob()).etag)) {
-      throw new PhotoStorageConflict();
+    const body = JSON.stringify(changes);
+    try {
+      await put(blobPath, body, {
+        ...blobOptions,
+        contentType: "application/json",
+        multipart: Buffer.byteLength(body) > 5 * 1024 * 1024,
+        ...(metadata ? { allowOverwrite: true, ifMatch: metadata.etag } : { allowOverwrite: false }),
+      });
+      return result;
+    } catch (error) {
+      if (error instanceof BlobPreconditionFailedError || (!metadata && await blobMetadata())) continue;
+      throw error;
     }
-    throw error;
   }
-  return result;
+  throw new PhotoStorageConflict();
 }
 
 export function listPhotos(changes) {
